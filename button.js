@@ -15,3 +15,4 @@ button.onclick = function (){
     
 }
 const nwConts = 123  ;
+let newe = 1234 
