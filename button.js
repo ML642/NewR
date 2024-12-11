@@ -2,7 +2,7 @@ let element = document.getElementsByTagName("p")[0]
 
 let button = document.createElement("button")
 
-button.style.height = "50px"
+button.style.height = "100px"
 button.style.width = "210px"
 element.append(button)
 let flag = 0   
@@ -14,3 +14,4 @@ button.onclick = function (){
     console.log(flag)
     
 }
+const nwConts = 123  ;
