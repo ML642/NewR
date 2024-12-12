@@ -16,3 +16,33 @@ button.onclick = function (){
 }
 const nwConts = 123  ;
 let newe = 1234 
+
+class Creature { 
+   constructor(age,gender)
+   {
+  this.age = age 
+  
+  this.gender = gender 
+   }
+   
+   get Getage (){ 
+    return this.age 
+}
+   set Setage(number){
+this.age = number 
+}
+   #method(){
+    console.log(" checking in ")
+   }
+   static Sort(){console.log("sorted")}
+}
+class worker extends Creature {
+    constructor(age,gender,work_experience,position,salary ){
+        super (age,gender)
+        this.work_experience = work_experience
+        this.position = position
+        this.salary = salary
+    }
+
+
+}
