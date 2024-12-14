@@ -5,7 +5,7 @@ let button = document.createElement("button")
 button.style.height = "100px"
 button.style.width = "210px"
 element.append(button)
-let flag = 0   
+let flag = 0 
 button.onclick = function (){
     
     if(flag == 0 ){document.body.style.background = "yellow"; flag = 1 ; return }
@@ -46,3 +46,9 @@ class worker extends Creature {
 
 
 }
+let elemen2t = document.createElement("div")
+let newelement = document.createElement("p")
+
+let some = 0 
+let sum = 1999 
+let age =12
