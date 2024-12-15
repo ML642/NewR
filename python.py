@@ -9,12 +9,10 @@ def check(ciag,index1,index2):
                 print(K2_1K(ciag,index1,index2))
             if x == 2 and y == 2:
                 print(K2_2K(ciag,index1,index2)) 
+#            if x == 1 and y == 1:
+                
 
-def help(ciag) :
-    print(ciag)
-    x = int(input())
-    y = int(input())
-    
+
 def K2_0K (list , index1 , index2) :
      list1 = [0,1,2,3]
      list1.remove(index1)
@@ -30,11 +28,13 @@ def K2_0K (list , index1 , index2) :
      
      if( z == 3 ):
          list[list1[1]]=6
-         return list 
+         print  (list)
+         quit() 
      if( z == 2 and t==1):
          list[list1[1]]=5
          list[list1[0]]=6
-            
+         print(list)
+         quit()
      
      #list[list1[0]] , list[list1[1]] =  list[list1[1]] , list[list1[0]]       
      return list       
@@ -70,19 +70,20 @@ def K3_0K (list,index1,index2):
         list[list1[1]]=6
             
     print(list) 
-# def K1_1 ( list , index1 ,index2 ) :
+# def K1_1 ( list , index1 , index2 ) :
 #     list1 = [0,1,2,3]
 #     value2 = index1
 #     list1.remove(index1)
 #     value = index2
 #     list1.remove(index2)
-#     list[list1[value]] , list[list1[1]] =  list[list1[1]] , list[list1[value]]
+#     list[value] , list[list1[1]] =  list[list1[1]] , list[value]
 #     print(list)
 #     x = input()
 #     y = input()
-#     if x == 1 : 
-#         list1 = [0,1,2,3]
-#         list1 = [  ]
+#     if x == 1 :
+#         KEYINDEX1 = value2 
+#         return (value2)
+#         
 Startlist = [1,2,3,4]
 print(Startlist)
 # print("ile podanych cyfr jest na dobrym miejscu")
@@ -93,6 +94,7 @@ y = int(input())
 if x == 0 and y == 2:
     Startlist = [2,1,3,4]
     check(Startlist,0,1)
+    
     if x == 0 : 
         Startlist = [2,1,4,3]
         check(Startlist,2,3)
@@ -103,6 +105,7 @@ if x == 0 and y == 2:
             if x == 0 : 
                 Startlist = [3,4,1,2]
                 print(K2_0K(Startlist,0,3))    
+    
      
     
  
