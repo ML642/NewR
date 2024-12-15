@@ -56,7 +56,7 @@ def K3_0K (list,index1,index2):
     list1.remove(index1)
     list1.remove(index2)
     value =  list[list1[1]]
-    list[list1[1]]=5
+    list[list1[1]] = 5
     
     x = int(input(x))
     y = int(input(y))
@@ -67,7 +67,7 @@ def K3_0K (list,index1,index2):
         list[list1[0]]=6
         list[list1 [1]]=value
     if(x==3):
-        list[list1[1]]=6
+        list[list1[1]] = 6
             
     print(list) 
 # def K1_1 ( list , index1 , index2 ) :
@@ -105,7 +105,7 @@ if x == 0 and y == 2:
             if x == 0 : 
                 Startlist = [3,4,1,2]
                 print(K2_0K(Startlist,0,3))    
-    
+                    
      
     
  
