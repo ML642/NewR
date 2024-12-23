@@ -1,111 +1,61 @@
-# [1,2,3,4,5,6]
-def check(ciag,index1,index2):
-            print(Startlist)
-            x = int(input())
-            y = int(input())
-            if x == 2 and y == 0 :
-                print(K2_0K(ciag,index1,index2))
-            if x == 2 and y == 1 :
-                print(K2_1K(ciag,index1,index2))
-            if x == 2 and y == 2:
-                print(K2_2K(ciag,index1,index2)) 
-#            if x == 1 and y == 1:
-                
+import random
 
+def generate_password():
+    return random.sample(range(1, 7), 4)
 
-def K2_0K (list , index1 , index2) :
-     list1 = [0,1,2,3]
-     list1.remove(index1)
-     list1.remove(index2)
-     
-     list[list1[0]] = 5
-     
-     print(list)
-      
-     
-     z = int(input())
-     t = int(input())
-     
-     if( z == 3 ):
-         list[list1[1]]=6
-         print  (list)
-         quit() 
-     if( z == 2 and t==1):
-         list[list1[1]]=5
-         list[list1[0]]=6
-         print(list)
-         quit()
-     
-     #list[list1[0]] , list[list1[1]] =  list[list1[1]] , list[list1[0]]       
-     return list       
-def K2_2K (list , index1 , index2):
-    list1 = [0,1,2,3]
-    list1.remove(index1)
-    list1.remove(index2)
-    list[list1[0]] , list[list1[1]] =  list[list1[1]] , list[list1[0]]
-    return list 
-def K2_1K (list , index1 , index2) :
-    list1 = [0,1,2,3]
-    list1.remove(index1)
-    list1.remove(index2) 
-    list[list1[0]] , list[list1[1]] =  list[list1[1]] , list[list1[0]]
-    K3_0K( list , index1, index2 )
-    
-def K3_0K (list,index1,index2):
-    list1 = [0,1,2,3]
-    list1.remove(index1)
-    list1.remove(index2)
-    value =  list[list1[1]]
-    list[list1[1]] = 5
-    
-    x = int(input(x))
-    y = int(input(y))
-    if(x == 2 and y == 1):
-        list[list1 [0]]=5
-        list[list1 [1]]=value
-    if(x == 2 and y == 0):
-        list[list1[0]]=6
-        list[list1 [1]]=value
-    if(x==3):
-        list[list1[1]] = 6
-            
-    print(list) 
-# def K1_1 ( list , index1 , index2 ) :
-#     list1 = [0,1,2,3]
-#     value2 = index1
-#     list1.remove(index1)
-#     value = index2
-#     list1.remove(index2)
-#     list[value] , list[list1[1]] =  list[list1[1]] , list[value]
-#     print(list)
-#     x = input()
-#     y = input()
-#     if x == 1 :
-#         KEYINDEX1 = value2 
-#         return (value2)
-#         
-Startlist = [1,2,3,4]
-print(Startlist)
-# print("ile podanych cyfr jest na dobrym miejscu")
-x = int(input())
-# print(" ile podanych cyfr znajduje sie w kodzie , ale nie jest na dobrym mejscu "
-y = int(input())
+def get_feedback(password, guess):
+    """Provide feedback on the guess compared to the password."""
+    correct_position = sum(p == g for p, g in zip(password, guess))
+    correct_number = sum(min(password.count(x), guess.count(x)) for x in set(guess)) - correct_position
+    return correct_position, correct_number
 
-if x == 0 and y == 2:
-    Startlist = [2,1,3,4]
-    check(Startlist,0,1)
-    
-    if x == 0 : 
-        Startlist = [2,1,4,3]
-        check(Startlist,2,3)
-        if x == 0 :
-            Startlist = [2,4,1,3]
-            print(Startlist)
-            check(Startlist,1,2)
-            if x == 0 : 
-                Startlist = [3,4,1,2]
-                print(K2_0K(Startlist,0,3))    
-                    
-     
-    
- 
+def filter_combinations(combinations, guess, feedback):
+    """Filter the possible combinations based on the feedback."""
+    return [combo for combo in combinations if get_feedback(combo, guess) == feedback]
+
+def play_game():
+    all_combinations = [list(combo) for combo in generate_all_combinations()]
+    attempts = 8
+
+    print("Welcome to the Mastermind game!")
+    print("The computer will guess a 4-digit password with unique numbers from 1 to 6.")
+    print(f"You have {attempts} attempts to provide feedback. Good luck!\n")
+
+    for attempt in range(1, attempts + 1):
+        guess = random.choice(all_combinations)
+        print(f"Attempt {attempt}: Computer's guess: {''.join(map(str, guess))}")
+
+        while True:
+            try:
+                feedback = input("Enter feedback (x y): ").split()
+                x, y = int(feedback[0]), int(feedback[1])
+                if x < 0 or y < 0 or x + y > 4:
+                    raise ValueError
+                break
+            except ValueError:
+                print("Invalid input. Please enter two non-negative integers separated by a space, where their sum does not exceed 4.")
+
+        if x == 4:
+            print(f"Computer cracked the password {''.join(map(str, guess))} in {attempt} attempts!")
+            return
+
+        all_combinations = filter_combinations(all_combinations, guess, (x, y))
+
+        
+
+    print("Computer failed to crack the password within 8 attempts.")
+def generate_all_combinations():
+    combinations = []
+    for i in range(1, 7):
+        for j in range(1, 7):
+            if j == i:
+                continue
+            for k in range(1, 7):
+                if k == i or k == j:
+                    continue
+                for l in range(1, 7):
+                    if l == i or l == j or l == k:
+                        continue
+                    combinations.append((i, j, k, l))
+    return combinations
+play_game()
